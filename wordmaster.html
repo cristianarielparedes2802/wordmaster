@@ -557,6 +557,7 @@
     .starred-card.empty:hover { transform: none; box-shadow: 0 4px 12px rgba(217,119,6,.35); }
 
     /* star button inside question card */
+    /* star en la tarjeta de pregunta */
     .star-btn {
       background: none;
       border: none;
@@ -576,6 +577,29 @@
     .star-btn:hover  { opacity: .85; transform: scale(1.15); background: rgba(245,158,11,.1); }
     .star-btn:active { transform: scale(.9); }
     .star-btn.active { opacity: 1; }
+
+    /* star en el feedback — siempre visible como pill button */
+    #star-word-feedback {
+      width: auto;
+      height: 36px;
+      border-radius: 99px;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      opacity: 1;
+      font-size: 1rem;
+      padding: 0 .75rem;
+      gap: .3rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    #star-word-feedback:hover { border-color: #f59e0b; color: #f59e0b; background: rgba(245,158,11,.08); transform: none; }
+    #star-word-feedback.active {
+      border-color: #f59e0b;
+      background: rgba(245,158,11,.12);
+      color: #d97706;
+      opacity: 1;
+    }
 
     /* emoji hint shown in kids mode */
     .question-emoji {
@@ -822,7 +846,7 @@
     <div class="feedback-box" id="feedback-box" aria-live="polite">
       <div class="feedback-header">
         <p class="feedback-result" id="feedback-result"></p>
-        <button class="star-btn" id="star-word-feedback" aria-label="Marcar como favorita" title="Guardar para practicar">☆</button>
+        <button class="star-btn" id="star-word-feedback" aria-label="Marcar como favorita">☆ Guardar</button>
       </div>
       <p class="feedback-pair"   id="feedback-pair"></p>
       <p class="feedback-example"    id="feedback-example-en"></p>
@@ -3072,14 +3096,22 @@
     // Star toggle during quiz
     function updateStarBtns(wordId) {
       const isStarred = starred.has(wordId);
-      const label = isStarred ? 'Quitar de favoritas' : 'Guardar para practicar';
-      ['star-word', 'star-word-feedback'].forEach(id => {
-        const btn = document.getElementById(id);
-        if (!btn) return;
-        btn.textContent = isStarred ? '★' : '☆';
-        btn.classList.toggle('active', isStarred);
-        btn.setAttribute('aria-label', label);
-      });
+
+      // botón en tarjeta de pregunta — solo icono
+      const cardBtn = document.getElementById('star-word');
+      if (cardBtn) {
+        cardBtn.textContent = isStarred ? '★' : '☆';
+        cardBtn.classList.toggle('active', isStarred);
+        cardBtn.setAttribute('aria-label', isStarred ? 'Quitar de favoritas' : 'Guardar para practicar');
+      }
+
+      // botón en feedback — icono + texto
+      const fbBtn = document.getElementById('star-word-feedback');
+      if (fbBtn) {
+        fbBtn.textContent = isStarred ? '★ Guardada' : '☆ Guardar';
+        fbBtn.classList.toggle('active', isStarred);
+        fbBtn.setAttribute('aria-label', isStarred ? 'Quitar de favoritas' : 'Guardar para practicar');
+      }
     }
 
     function handleStarClick() {
