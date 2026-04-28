@@ -274,9 +274,12 @@
       transition: all var(--ease);
       min-height: 56px;
     }
-    .option-btn:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
     .option-btn:disabled { cursor: default; }
-    .option-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    /* hover y focus-visible solo en dispositivos con puntero real (no touch) */
+    @media (hover: hover) and (pointer: fine) {
+      .option-btn:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
+      .option-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    }
 
     .option-row.correct .option-btn { background: var(--success-light); border-color: var(--success); color: var(--success); }
     .option-row.wrong   .option-btn { background: var(--error-light);   border-color: var(--error);   color: var(--error); }
@@ -2822,10 +2825,12 @@
       document.getElementById('btn-next').textContent =
         round.index < round.words.length - 1 ? 'Siguiente →' : 'Ver resultados →';
 
-      // Focus first option for keyboard navigation
-      requestAnimationFrame(() => {
-        document.querySelector('#options-grid .option-btn')?.focus();
-      });
+      // Auto-focus solo en dispositivos con teclado (no touch)
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        requestAnimationFrame(() => {
+          document.querySelector('#options-grid .option-btn')?.focus();
+        });
+      }
     }
 
     function updateHud() {
@@ -2870,8 +2875,10 @@
         ? `Correcto. ${w.english}: ${w.spanish}.`
         : `Incorrecto. La respuesta correcta es ${w.english}: ${w.spanish}.`;
 
-      // Focus next button so Enter key works immediately
-      requestAnimationFrame(() => document.getElementById('btn-next').focus());
+      // Focus next button solo en dispositivos con teclado
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        requestAnimationFrame(() => document.getElementById('btn-next').focus());
+      }
     }
 
     function renderFeedback(word, isCorrect) {
