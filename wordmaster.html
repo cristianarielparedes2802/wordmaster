@@ -561,6 +561,67 @@
     :root.it-mode .hud { background: #0f172a; color: #e0f2fe; }
     :root.it-mode .hud-exit, :root.it-mode .hud-finish { color: #93c5fd; }
 
+    /* Idioms card */
+    .idioms-card {
+      background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%);
+      border: 1.5px solid #a78bfa; border-radius: var(--radius);
+      padding: 1.1rem 1.25rem; color: #ede9fe;
+      display: flex; align-items: center; gap: 1rem;
+      cursor: pointer; transition: transform .15s, box-shadow .15s;
+      box-shadow: 0 4px 14px rgba(124,58,237,.3); user-select: none;
+    }
+    .idioms-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,58,237,.45); }
+    .idioms-card-icon  { font-size: 2.4rem; line-height: 1; }
+    .idioms-card-title { font-size: 1.05rem; font-weight: 700; color: #c4b5fd; }
+    .idioms-card-sub   { font-size: .78rem; color: #a78bfa; margin-top: .18rem; }
+    :root.idiom-mode { --accent: #7c3aed; --accent-light: rgba(124,58,237,.12); }
+    :root.idiom-mode .home-logo::before { content: '🗣️ '; }
+    :root.idiom-mode .question-card { border: 2px solid #ddd6fe; }
+
+    /* Verbs card */
+    .verbs-card {
+      background: linear-gradient(135deg, #92400e 0%, #b45309 100%);
+      border: 1.5px solid #fbbf24; border-radius: var(--radius);
+      padding: 1.1rem 1.25rem; color: #fef3c7;
+      display: flex; align-items: center; gap: 1rem;
+      cursor: pointer; transition: transform .15s, box-shadow .15s;
+      box-shadow: 0 4px 14px rgba(180,83,9,.3); user-select: none;
+    }
+    .verbs-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(180,83,9,.45); }
+    .verbs-card-icon  { font-size: 2.4rem; line-height: 1; }
+    .verbs-card-title { font-size: 1.05rem; font-weight: 700; color: #fde68a; }
+    .verbs-card-sub   { font-size: .78rem; color: #fbbf24; margin-top: .18rem; }
+    :root.verbs-mode { --accent: #d97706; --accent-light: rgba(217,119,6,.12); }
+    :root.verbs-mode .home-logo::before { content: '📝 '; }
+    :root.verbs-mode .question-card { border: 2px solid #fde68a; }
+
+    /* Grammar card */
+    .grammar-card {
+      background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+      border: 1.5px solid #34d399; border-radius: var(--radius);
+      padding: 1.1rem 1.25rem; color: #d1fae5;
+      display: flex; align-items: center; gap: 1rem;
+      cursor: pointer; transition: transform .15s, box-shadow .15s;
+      box-shadow: 0 4px 14px rgba(16,185,129,.25); user-select: none;
+    }
+    .grammar-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16,185,129,.4); }
+    .grammar-card-icon  { font-size: 2.4rem; line-height: 1; }
+    .grammar-card-title { font-size: 1.05rem; font-weight: 700; color: #6ee7b7; }
+    .grammar-card-sub   { font-size: .78rem; color: #34d399; margin-top: .18rem; }
+    :root.grammar-mode { --accent: #10b981; --accent-light: rgba(16,185,129,.12); }
+    :root.grammar-mode .home-logo::before { content: '📖 '; }
+    :root.grammar-mode .question-card { border: 2px solid #a7f3d0; }
+    :root.grammar-mode .question-word { font-size: 1.4rem; }
+
+    /* Verb mode badge & grammar topic badge */
+    .verb-mode-badge, .grammar-topic-badge {
+      display: none; font-size: .72rem; font-weight: 600; border-radius: 99px;
+      padding: .2rem .65rem; margin-bottom: .35rem; text-align: center;
+    }
+    .verb-mode-badge { background: #fef3c7; color: #92400e; border: 1px solid #fbbf24; }
+    .verb-mode-badge.pp { background: #ede9fe; color: #4c1d95; border-color: #a78bfa; }
+    .grammar-topic-badge { background: #d1fae5; color: #064e3b; border: 1px solid #34d399; }
+
     .starred-card {
       background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
       border-radius: var(--radius);
@@ -783,6 +844,30 @@
       </div>
     </div>
 
+    <div class="idioms-card" id="btn-idioms" role="button" tabindex="0" aria-label="Frases Idiomáticas en inglés">
+      <div class="idioms-card-icon">🗣️</div>
+      <div>
+        <div class="idioms-card-title">Frases Idiomáticas</div>
+        <div class="idioms-card-sub">Expresiones coloquiales del inglés · A–W</div>
+      </div>
+    </div>
+
+    <div class="verbs-card" id="btn-verbs" role="button" tabindex="0" aria-label="Verbos en inglés con conjugación">
+      <div class="verbs-card-icon">📝</div>
+      <div>
+        <div class="verbs-card-title">Verbos en Inglés</div>
+        <div class="verbs-card-sub">Significado · Pasado · Participio · Verbos Frasales</div>
+      </div>
+    </div>
+
+    <div class="grammar-card" id="btn-grammar" role="button" tabindex="0" aria-label="Gramática práctica por tiempos verbales">
+      <div class="grammar-card-icon">📖</div>
+      <div>
+        <div class="grammar-card-title">Gramática Práctica</div>
+        <div class="grammar-card-sub">Tiempos verbales en contexto · Condicionales</div>
+      </div>
+    </div>
+
   </section>
 
   <!-- ===== PANTALLA QUIZ ===== -->
@@ -829,6 +914,8 @@
         <span class="badge badge-cat"   id="q-cat">verb</span>
       </div>
       <div class="question-emoji" id="question-emoji">🦕</div>
+      <div class="verb-mode-badge"    id="verb-mode-badge"></div>
+      <div class="grammar-topic-badge" id="grammar-topic-badge"></div>
       <p class="question-word" id="question-word">—</p>
       <div class="question-actions">
         <button class="speak-btn" id="speak-question" aria-label="Pronunciar palabra en inglés">
@@ -2752,6 +2839,416 @@
       { id:'it_pairprog',       english:'pair programming',       spanish:'programación en pares',                level:'IT', category:'phrase',    exampleEN:'Pair programming helps spread knowledge and reduce bugs.',           exampleES:'La programación en pares ayuda a difundir el conocimiento y reducir errores.' },
     ];
 
+    // === EXTRAS (Extras.json) — connectors, adverbs, pronouns ===
+    WORDS.push(...[
+      { id:'ex_since',        en:'since',        es:'desde',                         level:'B1', pos:'adverb',  exampleEN:'I have lived here since 2010.',                    exampleES:'Vivo aquí desde 2010.' },
+      { id:'ex_for_dur',      en:'for',          es:'durante / por (duración)',       level:'A2', pos:'adverb',  exampleEN:'I have studied English for three years.',          exampleES:'He estudiado inglés durante tres años.' },
+      { id:'ex_how_long',     en:'how long',     es:'cuánto tiempo',                 level:'A2', pos:'phrase',  exampleEN:'How long have you been waiting?',                  exampleES:'¿Cuánto tiempo llevas esperando?' },
+      { id:'ex_how_much',     en:'how much',     es:'cuánto/a',                      level:'A2', pos:'phrase',  exampleEN:'How much does this cost?',                         exampleES:'¿Cuánto cuesta esto?' },
+      { id:'ex_yet',          en:'yet',          es:'aún / todavía (negativo)',       level:'B1', pos:'adverb',  exampleEN:"I haven't finished yet.",                         exampleES:'Todavía no he terminado.' },
+      { id:'ex_lately',       en:'lately',       es:'últimamente',                   level:'B1', pos:'adverb',  exampleEN:"I haven't been sleeping well lately.",             exampleES:'Últimamente no he dormido bien.' },
+      { id:'ex_nowadays',     en:'nowadays',     es:'hoy en día',                    level:'B1', pos:'adverb',  exampleEN:'Nowadays everyone has a smartphone.',              exampleES:'Hoy en día todos tienen un smartphone.' },
+      { id:'ex_ever',         en:'ever',         es:'alguna vez',                    level:'A2', pos:'adverb',  exampleEN:'Have you ever been to Japan?',                     exampleES:'¿Alguna vez has estado en Japón?' },
+      { id:'ex_still',        en:'still',        es:'todavía (continuación)',         level:'B1', pos:'adverb',  exampleEN:"She's still waiting for a reply.",                 exampleES:'Ella todavía está esperando una respuesta.' },
+      { id:'ex_just_adv',     en:'just',         es:'acabar de / solo',              level:'A2', pos:'adverb',  exampleEN:'I have just arrived.',                             exampleES:'Acabo de llegar.' },
+      { id:'ex_instead',      en:'instead',      es:'en su lugar / en cambio',       level:'B1', pos:'adverb',  exampleEN:"I didn't go out. Instead, I stayed home.",         exampleES:'No salí. En cambio, me quedé en casa.' },
+      { id:'ex_whatever',     en:'whatever',     es:'lo que sea',                    level:'B1', pos:'phrase',  exampleEN:'Do whatever you think is best.',                   exampleES:'Haz lo que creas que es mejor.' },
+      { id:'ex_wherever',     en:'wherever',     es:'donde sea',                     level:'B1', pos:'phrase',  exampleEN:'I will follow you wherever you go.',               exampleES:'Te seguiré a donde vayas.' },
+      { id:'ex_whenever',     en:'whenever',     es:'cuando sea',                    level:'B1', pos:'phrase',  exampleEN:'Call me whenever you need help.',                  exampleES:'Llámame cuando sea que necesites ayuda.' },
+      { id:'ex_whoever',      en:'whoever',      es:'quien sea',                     level:'B1', pos:'phrase',  exampleEN:'Whoever arrives first wins the prize.',            exampleES:'Quien llegue primero gana el premio.' },
+      { id:'ex_however_adv',  en:'however',      es:'sin embargo / como sea',        level:'B1', pos:'phrase',  exampleEN:'It was raining. However, we went out.',            exampleES:'Estaba lloviendo. Sin embargo, salimos.' },
+      { id:'ex_although',     en:'although',     es:'aunque',                        level:'B1', pos:'phrase',  exampleEN:'Although it was cold, we went for a walk.',        exampleES:'Aunque hacía frío, salimos a caminar.' },
+      { id:'ex_even_though',  en:'even though',  es:'aunque (énfasis)',              level:'B1', pos:'phrase',  exampleEN:'Even though she was tired, she kept working.',     exampleES:'Aunque estaba cansada, siguió trabajando.' },
+      { id:'ex_while',        en:'while',        es:'mientras',                      level:'A2', pos:'phrase',  exampleEN:'She called while I was cooking.',                  exampleES:'Ella llamó mientras yo cocinaba.' },
+      { id:'ex_unless',       en:'unless',       es:'a menos que',                   level:'B1', pos:'phrase',  exampleEN:"Unless you study, you won't pass.",                exampleES:'A menos que estudies, no aprobarás.' },
+      { id:'ex_whether',      en:'whether',      es:'si (opción)',                   level:'B1', pos:'phrase',  exampleEN:"I don't know whether to go or stay.",              exampleES:'No sé si ir o quedarme.' },
+      { id:'ex_despite',      en:'despite',      es:'a pesar de',                    level:'B1', pos:'phrase',  exampleEN:'Despite the rain, the match continued.',           exampleES:'A pesar de la lluvia, el partido continuó.' },
+      { id:'ex_by_prep',      en:'by',           es:'por / para / al lado de',       level:'A2', pos:'phrase',  exampleEN:'She sat by the window and read.',                  exampleES:'Ella se sentó junto a la ventana y leyó.' },
+      { id:'ex_within',       en:'within',       es:'dentro de',                     level:'B1', pos:'phrase',  exampleEN:'Please reply within 48 hours.',                    exampleES:'Por favor responda dentro de 48 horas.' },
+      { id:'ex_throughout',   en:'throughout',   es:'a lo largo de',                 level:'B2', pos:'phrase',  exampleEN:'The theme is repeated throughout the novel.',      exampleES:'El tema se repite a lo largo de la novela.' },
+      { id:'ex_who_pron',     en:'who',          es:'quien / que (personas)',        level:'A2', pos:'phrase',  exampleEN:'The man who called is my uncle.',                  exampleES:'El hombre que llamó es mi tío.' },
+      { id:'ex_which',        en:'which',        es:'cual / que (cosas)',            level:'A2', pos:'phrase',  exampleEN:'The book which I bought is great.',                exampleES:'El libro que compré es genial.' },
+      { id:'ex_whose',        en:'whose',        es:'cuyo / cuya',                   level:'B1', pos:'phrase',  exampleEN:'The student whose essay won is here.',             exampleES:'El estudiante cuyo ensayo ganó está aquí.' },
+      { id:'ex_quickly',      en:'quickly',      es:'rápidamente',                   level:'A2', pos:'adverb',  exampleEN:'She finished the test quickly.',                   exampleES:'Ella terminó el examen rápidamente.' },
+      { id:'ex_actually',     en:'actually',     es:'en realidad',                   level:'B1', pos:'adverb',  exampleEN:'I thought it would be hard, but it was actually easy.', exampleES:'Pensé que sería difícil, pero en realidad fue fácil.' },
+      { id:'ex_probably',     en:'probably',     es:'probablemente',                 level:'B1', pos:'adverb',  exampleEN:"She's probably at the office.",                    exampleES:'Probablemente está en la oficina.' },
+      { id:'ex_usually',      en:'usually',      es:'usualmente, generalmente',      level:'A2', pos:'adverb',  exampleEN:'I usually wake up at 7 AM.',                       exampleES:'Usualmente me despierto a las 7 AM.' },
+      { id:'ex_often',        en:'often',        es:'a menudo, frecuentemente',      level:'A2', pos:'adverb',  exampleEN:'We often go out for dinner on Fridays.',           exampleES:'A menudo salimos a cenar los viernes.' },
+      { id:'ex_sometimes',    en:'sometimes',    es:'a veces',                       level:'A2', pos:'adverb',  exampleEN:'Sometimes I work from home.',                      exampleES:'A veces trabajo desde casa.' },
+      { id:'ex_rarely',       en:'rarely',       es:'rara vez',                      level:'B1', pos:'adverb',  exampleEN:'She rarely misses a deadline.',                    exampleES:'Ella rara vez se pierde una fecha límite.' },
+    ]);
+
+    // === IDIOMS_WORDS (Idioms.json) ===
+    const _IDIOM_RAW = [
+      { en:'about to',            es:'a punto de',                  ex:'I was about to leave when the phone rang.' },
+      { en:'according to',        es:'de acuerdo a / según',        ex:'According to our teacher, there will be no class next week.' },
+      { en:'account for',         es:'explicar / justificar',       ex:'The bad weather accounts for the fact that few people came to the meeting.' },
+      { en:'after all',           es:'después de todo',             ex:"You don't need to phone him. After all, he never phones you." },
+      { en:'all of a sudden',     es:'de repente',                  ex:'All of a sudden, it became cloudy and began to rain.' },
+      { en:'as a matter of fact', es:'de hecho',                    ex:'As a matter of fact, we have been to the sports stadium many times.' },
+      { en:'as far as I know',    es:'por lo que sé',               ex:'As far as I know, the movie will start in a few minutes.' },
+      { en:'as for',              es:'en cuanto a',                 ex:'As for myself, I think that I will return home now.' },
+      { en:'as if',               es:'como si',                     ex:'It seemed as if the whole school came to the concert.' },
+      { en:'as long as',          es:'mientras que / con tal de que', ex:'As long as you promise to be careful, you can borrow my car.' },
+      { en:'as soon as',          es:'tan pronto como',             ex:'I phoned my friend as soon as I finished dinner.' },
+      { en:'as to',               es:'en cuanto a / respecto a',    ex:'As to your question, I will answer it tomorrow.' },
+      { en:'as well',             es:'también / además',            ex:'I plan to take a computer course as well.' },
+      { en:'as well as',          es:'así como / además de',        ex:'Please bring your swimming suit as well as your towel.' },
+      { en:'back and forth',      es:'de aquí para allá',           ex:'The argument went back and forth before the judge made a decision.' },
+      { en:'better off',          es:'en mejor situación',          ex:'My friend would be better off if he sold his old car.' },
+      { en:'break down',          es:'desglosar / dejar de funcionar', ex:'We tried to break down the problem for further study.' },
+      { en:'break up',            es:'romper / separarse',          ex:'I hope that my favorite band does not break up.' },
+      { en:'by the way',          es:'por cierto',                  ex:'By the way, could you please bring your laptop tomorrow.' },
+      { en:'carry out',           es:'llevar a cabo / realizar',    ex:'The scientist wanted to carry out more experiments.' },
+      { en:'come on',             es:'vamos / venga',               ex:'Come on, stop doing that.' },
+      { en:'come up',             es:'surgir / aparecer inesperadamente', ex:"I won't be able to go to the party if something comes up." },
+      { en:'come up with',        es:'proponer / idear',            ex:'I tried to come up with a name for the new magazine.' },
+      { en:'deal with',           es:'tratar con / encargarse de',  ex:'We will deal with the boxes tomorrow.' },
+      { en:'end up',              es:'terminar / acabar',           ex:'We ended up watching a movie last night.' },
+      { en:'figure out',          es:'entender / resolver',         ex:'I finally figured out how to use the new software.' },
+      { en:'fill in',             es:'rellenar / completar',        ex:'Please fill in this form and give it to the receptionist.' },
+      { en:'find out',            es:'descubrir / averiguar',       ex:'My mother found out that I had quit my French class.' },
+      { en:'first of all',        es:'primero que nada',            ex:'First of all, we prepared the garden and then planted the seeds.' },
+      { en:'for good',            es:'para siempre / permanentemente', ex:'The city plans to close the swimming pool for good.' },
+      { en:'for sure',            es:'sin duda / con certeza',      ex:'I will go to the movie with you for sure next week.' },
+      { en:'get back to',         es:'regresar a / retomar',        ex:'I was happy to get back to my work after my holiday.' },
+      { en:'get into',            es:'involucrarse / meterse en',   ex:'I do not want to get into an argument with my friend.' },
+      { en:'get out of',          es:'salir de / escapar de',       ex:'I have an appointment and I want to get out of my house quickly.' },
+      { en:'get rid of',          es:'deshacerse de',               ex:'I bought a new TV so I want to get rid of my old one.' },
+      { en:'get through',         es:'terminar / llegar al final',  ex:'I have much reading that I must get through before tomorrow.' },
+      { en:'go ahead',            es:'seguir adelante',             ex:"Let's go ahead and start now. We can't wait any longer." },
+      { en:'hang out',            es:'pasar el rato',               ex:'My friend has been hanging out with a bad group of people.' },
+      { en:'have to do with',     es:'tener que ver con',           ex:'The book has something to do with cooking.' },
+      { en:'hold on',             es:'esperar / aguanta',           ex:'Please hold on for a minute while I lock the door.' },
+      { en:'in a way',            es:'en cierta forma',             ex:'In a way, I want to go to the new restaurant.' },
+      { en:'in common',           es:'en común',                    ex:'I had nothing in common with the other members of the class.' },
+      { en:'in detail',           es:'en detalle',                  ex:'The saleswoman explained the new product in detail.' },
+      { en:'in fact',             es:'de hecho',                    ex:'He has been to China before. In fact, he has been there three times.' },
+      { en:'in favor of',         es:'en favor de / a favor de',    ex:'Everybody is in favor of the new police chief.' },
+      { en:'in general',          es:'en general',                  ex:'In general, most people are happy with the new manager.' },
+      { en:'in order to',         es:'para / con el fin de',        ex:'They closed the school in order to do some major repairs.' },
+      { en:'in other words',      es:'en otras palabras',           ex:'In other words, if you do not finish, you will not pass.' },
+      { en:'in place',            es:'en orden / en su lugar',      ex:'Everything in the room was in place when we arrived.' },
+      { en:'keep in mind',        es:'tener en mente',              ex:'I told my friend to keep the time I must leave in mind.' },
+      { en:'kind of',             es:'más o menos',                 ex:'I was kind of tired when I arrived home last night.' },
+      { en:'look for',            es:'buscar',                      ex:'My friend has been looking for her credit card all morning.' },
+      { en:'look up',             es:'buscar (en un libro/diccionario)', ex:"I will look up my friend's name in the telephone book." },
+      { en:'make a difference',   es:'hacer la diferencia',         ex:'If I study hard this weekend, it should make a difference.' },
+      { en:'make sense',          es:'tener sentido',               ex:"The manager's new proposal makes sense." },
+      { en:'make sure',           es:'asegurarse',                  ex:'I want to make sure that my friend will meet me tomorrow.' },
+      { en:'more or less',        es:'más o menos',                 ex:'I more or less have decided to study business next year.' },
+      { en:'no matter',           es:'no importa / sin importar',   ex:'No matter how hard I try, my teacher is never satisfied.' },
+      { en:'not at all',          es:'para nada',                   ex:'I am not at all happy with my new computer.' },
+      { en:'of course',           es:'por supuesto',                ex:'Of course you can use my car if you want to.' },
+      { en:'on the other hand',   es:'por otro lado',               ex:'He is intelligent but on the other hand he is lazy.' },
+      { en:'pick up',             es:'recoger / levantar',          ex:'I picked up a copy of the newspaper at the station.' },
+      { en:'point out',           es:'señalar / indicar',           ex:'My teacher kindly pointed out the mistakes I had made.' },
+      { en:'regardless of',       es:'independientemente de',       ex:'Regardless of the weather, we are going to go fishing.' },
+      { en:'right away',          es:'inmediatamente / enseguida',  ex:'I forgot my book but I will go and get it right away.' },
+      { en:'run into',            es:'encontrarse con / toparse con', ex:'The mechanic ran into trouble when he was fixing my car.' },
+      { en:'set up',              es:'preparar / establecer',       ex:'The company set up a unique system to test the new product.' },
+      { en:'show up',             es:'aparecer / llegar',           ex:'What time did your friend show up for the party?' },
+      { en:'so far',              es:'hasta ahora',                 ex:'So far, no one has entered the speech contest.' },
+      { en:'so to speak',         es:'por así decirlo',             ex:'We had a good time, so to speak, although the service was not very good.' },
+      { en:'sort of',             es:'algo así / más o menos',      ex:'Did you finish? Sort of, but not really.' },
+      { en:'stick with',          es:'seguir con / no abandonar',   ex:'The boy has been able to stick with his music lessons.' },
+      { en:'take advantage of',   es:'aprovechar / tomar ventaja',  ex:'We took advantage of the beautiful weather and went to the beach.' },
+      { en:'take care of',        es:'cuidar / encargarse de',      ex:'It is good to take care of your health.' },
+      { en:'take over',           es:'tomar el control',            ex:'The large company wants to take over the small company.' },
+      { en:'take place',          es:'ocurrir / tener lugar',       ex:'The soccer game took place on the coldest day of the year.' },
+      { en:'up to',               es:'hasta / depende de',          ex:'There were probably up to thirty people at the meeting.' },
+      { en:'used to',             es:'acostumbrado a / solía',      ex:'My friend is not used to living in such a big city.' },
+      { en:'with respect to',     es:'con respecto a',              ex:'I do not know what the company will do with respect to the old system.' },
+      { en:'worked out',          es:'funcionó / salió bien',       ex:'In the end everything worked out well.' },
+    ];
+    const IDIOMS_WORDS = _IDIOM_RAW.map(item => {
+      const slug = item.en.replace(/\s+/g,'_').replace(/[^a-z_]/g,'');
+      return { id:`idm_${slug}`, english:item.en, spanish:item.es,
+               level:'B1', category:'idiom', exampleEN:item.ex, exampleES:'' };
+    });
+
+    // === VERBS_WORDS (Verbos.json) ===
+    // Compact: { v, past, pp, es, lv, exEN, exES }  — pp omitted when same as past
+    const _VB_RAW = [
+      // Daily Routine
+      { v:'wake up',        past:'WOKE UP',        pp:'WOKEN UP',      es:'despertar',         lv:'A2', exEN:'I wake up at 7 every morning.',           exES:'Me despierto a las 7 cada mañana.' },
+      { v:'take a shower',  past:'TOOK A SHOWER',  pp:'TAKEN A SHOWER',es:'tomar un baño',     lv:'A2', exEN:'She takes a shower every morning.',       exES:'Ella se ducha cada mañana.' },
+      { v:'brush',          past:'BRUSHED',                            es:'cepillar',           lv:'A2', exEN:'I brush my teeth twice a day.',           exES:'Me cepillo los dientes dos veces al día.' },
+      { v:'get dressed',    past:'GOT DRESSED',                        es:'vestirse',           lv:'A2', exEN:'He got dressed quickly.',                 exES:'Él se vistió rápidamente.' },
+      { v:'have breakfast', past:'HAD BREAKFAST',                      es:'desayunar',          lv:'A2', exEN:'We have breakfast at 8 AM.',              exES:'Desayunamos a las 8 AM.' },
+      { v:'have lunch',     past:'HAD LUNCH',                          es:'almorzar',           lv:'A2', exEN:'She has lunch at the office.',            exES:'Ella almuerza en la oficina.' },
+      { v:'have dinner',    past:'HAD DINNER',                         es:'cenar',              lv:'A2', exEN:'We had dinner at a nice restaurant.',      exES:'Cenamos en un buen restaurante.' },
+      { v:'go',             past:'WENT',            pp:'GONE',          es:'ir',                lv:'A2', exEN:'I go to the gym every day.',              exES:'Voy al gimnasio cada día.' },
+      { v:'check',          past:'CHECKED',                            es:'revisar',            lv:'A2', exEN:'I check my emails every morning.',        exES:'Reviso mis correos cada mañana.' },
+      { v:'work',           past:'WORKED',                             es:'trabajar',           lv:'A2', exEN:'She works from home on Fridays.',         exES:'Ella trabaja desde casa los viernes.' },
+      { v:'study',          past:'STUDIED',                            es:'estudiar',           lv:'A2', exEN:'He studied for four hours.',              exES:'Él estudió durante cuatro horas.' },
+      { v:'watch',          past:'WATCHED',                            es:'mirar, observar',    lv:'A2', exEN:'We watch TV after dinner.',              exES:'Vemos televisión después de cenar.' },
+      { v:'do',             past:'DID',             pp:'DONE',          es:'hacer',             lv:'A2', exEN:'Did you do your homework?',              exES:'¿Hiciste tu tarea?' },
+      { v:'make',           past:'MADE',                               es:'hacer / fabricar',   lv:'A2', exEN:'She made a delicious cake.',             exES:'Ella hizo un pastel delicioso.' },
+      { v:'chat',           past:'CHATTED',                            es:'chatear / conversar',lv:'A2', exEN:'We chatted online for an hour.',          exES:'Charlamos en línea durante una hora.' },
+      { v:'play',           past:'PLAYED',                             es:'jugar',              lv:'A2', exEN:'The children played in the park.',        exES:'Los niños jugaron en el parque.' },
+      { v:'cook',           past:'COOKED',                             es:'cocinar',            lv:'A2', exEN:'He cooked dinner for the family.',        exES:'Él cocinó la cena para la familia.' },
+      { v:'call',           past:'CALLED',                             es:'llamar',             lv:'A2', exEN:'She called me this morning.',             exES:'Ella me llamó esta mañana.' },
+      { v:'come back',      past:'CAME BACK',       pp:'COME BACK',     es:'regresar, volver',  lv:'A2', exEN:'He came back very late.',                exES:'Él regresó muy tarde.' },
+      { v:'eat',            past:'ATE',             pp:'EATEN',         es:'comer',             lv:'A2', exEN:'We eat together every Sunday.',           exES:'Comemos juntos cada domingo.' },
+      { v:'drive',          past:'DROVE',           pp:'DRIVEN',        es:'conducir, manejar', lv:'A2', exEN:'She drives to work every day.',           exES:'Ella maneja al trabajo cada día.' },
+      { v:'read',           past:'READ',                               es:'leer',               lv:'A2', exEN:'I read a book every night.',             exES:'Leo un libro cada noche.' },
+      { v:'drink',          past:'DRANK',           pp:'DRUNK',         es:'beber, tomar',      lv:'A2', exEN:'He drinks coffee every morning.',        exES:'Él toma café cada mañana.' },
+      { v:'listen',         past:'LISTENED',                           es:'escuchar',           lv:'A2', exEN:'She listened to music while working.',   exES:'Ella escuchó música mientras trabajaba.' },
+      { v:'clean',          past:'CLEANED',                            es:'limpiar',            lv:'A2', exEN:'We cleaned the house on Saturday.',      exES:'Limpiamos la casa el sábado.' },
+      { v:'sleep',          past:'SLEPT',                              es:'dormir',             lv:'A2', exEN:'I slept for eight hours last night.',    exES:'Dormí ocho horas anoche.' },
+      // Most Common
+      { v:'ride',           past:'RODE',            pp:'RIDDEN',        es:'montar, andar en',  lv:'A2', exEN:'She rides her bike to school.',          exES:'Ella va a la escuela en bicicleta.' },
+      { v:'get',            past:'GOT',             pp:'GOTTEN',        es:'obtener, conseguir',lv:'A2', exEN:'He got a new job.',                     exES:'Él consiguió un nuevo trabajo.' },
+      { v:'give',           past:'GAVE',            pp:'GIVEN',         es:'dar',               lv:'A2', exEN:'She gave me a great advice.',            exES:'Ella me dio un gran consejo.' },
+      { v:'see',            past:'SAW',             pp:'SEEN',          es:'ver',               lv:'A2', exEN:'I saw a great movie yesterday.',          exES:'Vi una gran película ayer.' },
+      { v:'look',           past:'LOOKED',                             es:'mirar, observar',    lv:'A2', exEN:'Look at that beautiful sunset.',         exES:'Mira ese hermoso atardecer.' },
+      { v:'take',           past:'TOOK',            pp:'TAKEN',         es:'tomar',             lv:'A2', exEN:'She took a taxi home.',                  exES:'Ella tomó un taxi a casa.' },
+      { v:'think',          past:'THOUGHT',                            es:'pensar, creer',      lv:'A2', exEN:'I think we should leave early.',         exES:'Creo que deberíamos salir temprano.' },
+      { v:'wash',           past:'WASHED',                             es:'lavar',              lv:'A2', exEN:'He washed the dishes after dinner.',     exES:'Él lavó los platos después de cenar.' },
+      { v:'have',           past:'HAD',                                es:'tener, haber',       lv:'A2', exEN:'I have a meeting at ten.',               exES:'Tengo una reunión a las diez.' },
+      { v:'find',           past:'FOUND',                              es:'encontrar',          lv:'A2', exEN:'She found her keys under the sofa.',     exES:'Ella encontró sus llaves bajo el sofá.' },
+      { v:'learn',          past:'LEARNED',                            es:'aprender',           lv:'A2', exEN:'I learned a new word today.',            exES:'Aprendí una nueva palabra hoy.' },
+      { v:'write',          past:'WROTE',           pp:'WRITTEN',       es:'escribir',          lv:'A2', exEN:'She wrote a long email to her boss.',    exES:'Ella escribió un largo correo a su jefe.' },
+      { v:'walk',           past:'WALKED',                             es:'caminar',            lv:'A2', exEN:'We walked to the park after lunch.',     exES:'Caminamos al parque después del almuerzo.' },
+      { v:'want',           past:'WANTED',                             es:'querer, desear',     lv:'A2', exEN:'I want to travel to Europe.',            exES:'Quiero viajar a Europa.' },
+      { v:'need',           past:'NEEDED',                             es:'necesitar',          lv:'A2', exEN:'She needs more time to finish.',         exES:'Ella necesita más tiempo para terminar.' },
+      { v:'like',           past:'LIKED',                              es:'gustar',             lv:'A2', exEN:'He likes to play video games.',          exES:'A él le gusta jugar videojuegos.' },
+      { v:'talk',           past:'TALKED',                             es:'conversar, hablar',  lv:'A2', exEN:'We talked for two hours on the phone.',  exES:'Hablamos dos horas por teléfono.' },
+      { v:'speak',          past:'SPOKE',           pp:'SPOKEN',        es:'hablar',            lv:'A2', exEN:'She speaks three languages.',            exES:'Ella habla tres idiomas.' },
+      { v:'remember',       past:'REMEMBERED',                         es:'recordar',           lv:'A2', exEN:'I remember meeting him at the party.',   exES:'Recuerdo haberlo conocido en la fiesta.' },
+      { v:'understand',     past:'UNDERSTOOD',                         es:'entender, comprender',lv:'A2', exEN:'I understand now. Thank you!',          exES:'Ahora entiendo. ¡Gracias!' },
+      { v:'spend',          past:'SPENT',                              es:'gastar / pasar (tiempo)',lv:'B1', exEN:'She spent the weekend at the beach.',exES:'Ella pasó el fin de semana en la playa.' },
+      { v:'try',            past:'TRIED',                              es:'intentar, tratar',   lv:'A2', exEN:'I tried the new restaurant last night.',  exES:'Probé el nuevo restaurante anoche.' },
+      { v:'swim',           past:'SWAM',            pp:'SWUM',          es:'nadar',             lv:'A2', exEN:'She swam across the lake.',              exES:'Ella nadó a través del lago.' },
+      { v:'start',          past:'STARTED',                            es:'empezar, comenzar',  lv:'A2', exEN:'The meeting starts at nine.',            exES:'La reunión empieza a las nueve.' },
+      { v:'say',            past:'SAID',                               es:'decir',              lv:'A2', exEN:'He said he would be there.',             exES:'Él dijo que estaría allí.' },
+      { v:'tell',           past:'TOLD',                               es:'decir, contar',      lv:'A2', exEN:'She told me the whole story.',           exES:'Ella me contó toda la historia.' },
+      { v:'buy',            past:'BOUGHT',                             es:'comprar',            lv:'A2', exEN:'I bought a new laptop yesterday.',       exES:'Compré un portátil nuevo ayer.' },
+      { v:'bring',          past:'BROUGHT',                            es:'traer',              lv:'A2', exEN:'Please bring your ID card.',             exES:'Por favor trae tu documento de identidad.' },
+      { v:'change',         past:'CHANGED',                            es:'cambiar',            lv:'A2', exEN:'He changed his mind at the last minute.', exES:'Él cambió de opinión en el último momento.' },
+      { v:'cut',            past:'CUT',                                es:'cortar',             lv:'A2', exEN:'She cut the paper with scissors.',       exES:'Ella cortó el papel con tijeras.' },
+      { v:'fall',           past:'FELL',            pp:'FALLEN',        es:'caer',              lv:'A2', exEN:'He fell off his bike.',                  exES:'Él se cayó de su bicicleta.' },
+      { v:'fix',            past:'FIXED',                              es:'reparar, arreglar',  lv:'A2', exEN:'The technician fixed the computer.',     exES:'El técnico reparó el computador.' },
+      { v:'forget',         past:'FORGOT',          pp:'FORGOTTEN',     es:'olvidar',           lv:'A2', exEN:"Don't forget to set an alarm.",          exES:'No olvides poner una alarma.' },
+      { v:'lose',           past:'LOST',                               es:'perder',             lv:'A2', exEN:'She lost her phone on the bus.',          exES:'Ella perdió su teléfono en el autobús.' },
+      { v:'open',           past:'OPENED',                             es:'abrir',              lv:'A2', exEN:'He opened the window to let some air in.', exES:'Él abrió la ventana para dejar entrar el aire.' },
+      { v:'close',          past:'CLOSED',                             es:'cerrar',             lv:'A2', exEN:'Please close the door behind you.',      exES:'Por favor cierra la puerta detrás de ti.' },
+      { v:'pay',            past:'PAID',                               es:'pagar',              lv:'A2', exEN:'She paid with her credit card.',          exES:'Ella pagó con su tarjeta de crédito.' },
+      { v:'put',            past:'PUT',                                es:'poner, colocar',     lv:'A2', exEN:'He put the book on the table.',          exES:'Él puso el libro sobre la mesa.' },
+      { v:'run',            past:'RAN',             pp:'RUN',           es:'correr',            lv:'A2', exEN:'She runs 5 km every morning.',           exES:'Ella corre 5 km cada mañana.' },
+      { v:'send',           past:'SENT',                               es:'enviar, mandar',     lv:'A2', exEN:'I sent you an email an hour ago.',       exES:'Te envié un correo hace una hora.' },
+      { v:'feel',           past:'FELT',                               es:'sentir',             lv:'A2', exEN:'I felt nervous before the presentation.', exES:'Me sentí nervioso antes de la presentación.' },
+      { v:'teach',          past:'TAUGHT',                             es:'enseñar',            lv:'A2', exEN:'She taught English for ten years.',       exES:'Ella enseñó inglés durante diez años.' },
+      { v:'wait',           past:'WAITED',                             es:'esperar',            lv:'A2', exEN:'We waited for two hours at the airport.', exES:'Esperamos dos horas en el aeropuerto.' },
+      { v:'fly',            past:'FLEW',            pp:'FLOWN',         es:'volar',             lv:'A2', exEN:'She flew to Paris for the conference.',   exES:'Ella voló a París para la conferencia.' },
+      { v:'leave',          past:'LEFT',                               es:'dejar, salir',       lv:'A2', exEN:"Don't leave without saying goodbye.",    exES:'No te vayas sin decir adiós.' },
+      { v:'know',           past:'KNEW',            pp:'KNOWN',         es:'saber, conocer',    lv:'A2', exEN:'I knew the answer right away.',          exES:'Supe la respuesta de inmediato.' },
+      { v:'believe',        past:'BELIEVED',                           es:'creer',              lv:'B1', exEN:'I believe he is telling the truth.',      exES:'Creo que él está diciendo la verdad.' },
+      { v:'become',         past:'BECAME',          pp:'BECOME',        es:'llegar a ser, convertirse en', lv:'B1', exEN:'She became a great doctor.',  exES:'Ella se convirtió en una gran doctora.' },
+      { v:'ask',            past:'ASKED',                              es:'pedir, preguntar',   lv:'A2', exEN:'She asked me for directions.',           exES:'Ella me preguntó por direcciones.' },
+      { v:'hear',           past:'HEARD',                              es:'escuchar, oír',      lv:'A2', exEN:'Did you hear the news?',                exES:'¿Escuchaste las noticias?' },
+      { v:'use',            past:'USED',                               es:'usar, utilizar',     lv:'A2', exEN:'I use this app every day.',              exES:'Uso esta aplicación cada día.' },
+      { v:'sing',           past:'SANG',            pp:'SUNG',          es:'cantar',            lv:'A2', exEN:'She sang beautifully at the concert.',   exES:'Ella cantó hermosamente en el concierto.' },
+      { v:'pick up',        past:'PICKED UP',                          es:'recoger, levantar',  lv:'A2', exEN:'Can you pick up the kids from school?',  exES:'¿Puedes recoger a los niños de la escuela?' },
+      // Irregular verbs unique (not already above)
+      { v:'arise',          past:'AROSE',           pp:'ARISEN',        es:'surgir, originarse',lv:'B2', exEN:'A problem arose during the meeting.',    exES:'Surgió un problema durante la reunión.' },
+      { v:'bear',           past:'BORE',            pp:'BORN',          es:'soportar, tolerar', lv:'B2', exEN:'She bore the pain without complaining.',  exES:'Ella soportó el dolor sin quejarse.' },
+      { v:'beat',           past:'BEAT',            pp:'BEATEN',        es:'golpear, vencer',   lv:'B1', exEN:'Our team beat the opponents easily.',    exES:'Nuestro equipo venció fácilmente a los oponentes.' },
+      { v:'bend',           past:'BENT',                               es:'doblar, inclinar',   lv:'B1', exEN:'He bent the wire into a circle.',        exES:'Él dobló el alambre en un círculo.' },
+      { v:'bind',           past:'BOUND',                              es:'atar, unir',          lv:'B2', exEN:'She bound the papers together.',        exES:'Ella ató los papeles juntos.' },
+      { v:'bite',           past:'BIT',             pp:'BITTEN',        es:'morder',            lv:'A2', exEN:'A dog bit him in the leg.',              exES:'Un perro le mordió en la pierna.' },
+      { v:'blow',           past:'BLEW',            pp:'BLOWN',         es:'soplar',            lv:'A2', exEN:'The wind blew the leaves off the tree.',  exES:'El viento sopló las hojas del árbol.' },
+      { v:'break',          past:'BROKE',           pp:'BROKEN',        es:'romper, quebrar',   lv:'A2', exEN:'She broke her arm playing sports.',      exES:'Ella se rompió el brazo jugando deportes.' },
+      { v:'burst',          past:'BURST',                              es:'reventar, estallar', lv:'B2', exEN:'The balloon burst with a loud bang.',    exES:'El globo reventó con un fuerte estallido.' },
+      { v:'catch',          past:'CAUGHT',                             es:'atrapar, coger',     lv:'A2', exEN:'He caught the ball with one hand.',      exES:'Él atrapó la pelota con una mano.' },
+      { v:'choose',         past:'CHOSE',           pp:'CHOSEN',        es:'elegir, escoger',   lv:'B1', exEN:'She chose the blue dress for the event.', exES:'Ella eligió el vestido azul para el evento.' },
+      { v:'come',           past:'CAME',            pp:'COME',          es:'venir',             lv:'A2', exEN:'Come here and look at this.',            exES:'Ven aquí y mira esto.' },
+      { v:'cost',           past:'COST',                               es:'costar',             lv:'A2', exEN:'How much does this jacket cost?',        exES:'¿Cuánto cuesta esta chaqueta?' },
+      { v:'deal',           past:'DEALT',                              es:'tratar, repartir',   lv:'B1', exEN:'We need to deal with this issue now.',  exES:'Necesitamos tratar este problema ahora.' },
+      { v:'dig',            past:'DUG',                                es:'cavar, excavar',     lv:'B1', exEN:'They dug a hole in the ground.',        exES:'Ellos cavaron un hoyo en el suelo.' },
+      { v:'draw',           past:'DREW',            pp:'DRAWN',         es:'dibujar, atraer',   lv:'A2', exEN:'She drew a beautiful landscape.',       exES:'Ella dibujó un hermoso paisaje.' },
+      { v:'feed',           past:'FED',                                es:'alimentar, nutrir',  lv:'A2', exEN:'He fed the dog every morning.',         exES:'Él alimentó al perro cada mañana.' },
+      { v:'fight',          past:'FOUGHT',                             es:'pelear, combatir',   lv:'B1', exEN:'They fought for their rights.',          exES:'Ellos lucharon por sus derechos.' },
+      { v:'flee',           past:'FLED',                               es:'escapar, huir',      lv:'B2', exEN:'The thief fled from the police.',        exES:'El ladrón huyó de la policía.' },
+      { v:'freeze',         past:'FROZE',           pp:'FROZEN',        es:'congelar',          lv:'B1', exEN:'The water froze overnight.',             exES:'El agua se congeló durante la noche.' },
+      { v:'grow',           past:'GREW',            pp:'GROWN',         es:'crecer, cultivar',  lv:'A2', exEN:'Children grow very fast.',               exES:'Los niños crecen muy rápido.' },
+      { v:'hang',           past:'HUNG',                               es:'colgar',             lv:'A2', exEN:'She hung a picture on the wall.',        exES:'Ella colgó un cuadro en la pared.' },
+      { v:'hide',           past:'HID',             pp:'HIDDEN',        es:'ocultar, esconder', lv:'A2', exEN:'He hid the gift under the bed.',         exES:'Él escondió el regalo debajo de la cama.' },
+      { v:'hit',            past:'HIT',                                es:'golpear, pegar',     lv:'A2', exEN:'The car hit a tree.',                   exES:'El coche golpeó un árbol.' },
+      { v:'hold',           past:'HELD',                               es:'sostener, mantener', lv:'B1', exEN:'She held the baby carefully.',           exES:'Ella sostuvo al bebé con cuidado.' },
+      { v:'hurt',           past:'HURT',                               es:'lastimar, doler',    lv:'A2', exEN:'My back hurts after sitting all day.',   exES:'Me duele la espalda después de sentarme todo el día.' },
+      { v:'keep',           past:'KEPT',                               es:'mantener, guardar',  lv:'B1', exEN:'She kept the secret for years.',         exES:'Ella guardó el secreto durante años.' },
+      { v:'lay',            past:'LAID',                               es:'poner, colocar',     lv:'B1', exEN:'She laid the baby in the crib.',         exES:'Ella colocó al bebé en la cuna.' },
+      { v:'lead',           past:'LED',                                es:'guiar, liderar',     lv:'B1', exEN:'He led the team to victory.',            exES:'Él guió al equipo a la victoria.' },
+      { v:'lend',           past:'LENT',                               es:'prestar',            lv:'B1', exEN:'Can you lend me your charger?',          exES:'¿Puedes prestarme tu cargador?' },
+      { v:'lie',            past:'LIED',                               es:'mentir',             lv:'B1', exEN:'He lied about his age.',                 exES:'Él mintió sobre su edad.' },
+      { v:'mean',           past:'MEANT',                              es:'significar, querer decir',lv:'B1', exEN:'What does this word mean?',         exES:'¿Qué significa esta palabra?' },
+      { v:'meet',           past:'MET',                                es:'conocer, reunirse',  lv:'A2', exEN:'I met her at a conference.',             exES:'La conocí en una conferencia.' },
+      { v:'overcome',       past:'OVERCAME',        pp:'OVERCOME',      es:'superar, vencer',   lv:'B2', exEN:'She overcame every obstacle.',           exES:'Ella superó cada obstáculo.' },
+      { v:'rise',           past:'ROSE',            pp:'RISEN',         es:'ascender, levantarse',lv:'B1', exEN:'Prices rose sharply last year.',       exES:'Los precios subieron bruscamente el año pasado.' },
+      { v:'seek',           past:'SOUGHT',                             es:'buscar, solicitar',  lv:'B2', exEN:'She sought help from a professional.',   exES:'Ella buscó ayuda de un profesional.' },
+      { v:'sell',           past:'SOLD',                               es:'vender',             lv:'A2', exEN:'He sold his car last month.',            exES:'Él vendió su coche el mes pasado.' },
+      { v:'set',            past:'SET',                                es:'instalar, colocar',  lv:'B1', exEN:'She set the table before dinner.',       exES:'Ella puso la mesa antes de cenar.' },
+      { v:'shake',          past:'SHOOK',           pp:'SHAKEN',        es:'sacudir, temblar',  lv:'B1', exEN:'He shook hands with the manager.',       exES:'Él estrechó la mano del gerente.' },
+      { v:'shine',          past:'SHONE',                              es:'brillar',            lv:'B1', exEN:'The sun shone all afternoon.',            exES:'El sol brilló toda la tarde.' },
+      { v:'shoot',          past:'SHOT',                               es:'disparar, lanzar',   lv:'B1', exEN:'He shot the ball into the goal.',        exES:'Él lanzó el balón a la portería.' },
+      { v:'show',           past:'SHOWED',          pp:'SHOWN',         es:'mostrar, demostrar',lv:'A2', exEN:'She showed me the way to the station.',  exES:'Ella me mostró el camino a la estación.' },
+      { v:'shut',           past:'SHUT',                               es:'cerrar',             lv:'A2', exEN:'Please shut the window.',                exES:'Por favor cierra la ventana.' },
+      { v:'sink',           past:'SANK',            pp:'SUNK',          es:'hundir, sumergir',  lv:'B2', exEN:'The ship sank in less than an hour.',    exES:'El barco se hundió en menos de una hora.' },
+      { v:'sit',            past:'SAT',                                es:'sentarse',           lv:'A2', exEN:'She sat next to me on the bus.',          exES:'Ella se sentó a mi lado en el autobús.' },
+      { v:'stand',          past:'STOOD',                              es:'estar de pie, pararse', lv:'A2', exEN:'We stood in line for an hour.',       exES:'Estuvimos en fila durante una hora.' },
+      { v:'stick',          past:'STUCK',                              es:'pegar, adherir',     lv:'B1', exEN:'She stuck the note on the fridge.',      exES:'Ella pegó la nota en el refrigerador.' },
+      { v:'throw',          past:'THREW',           pp:'THROWN',        es:'lanzar, tirar',     lv:'A2', exEN:'He threw the ball over the fence.',      exES:'Él lanzó la pelota por encima de la valla.' },
+      { v:'undergo',        past:'UNDERWENT',       pp:'UNDERGONE',     es:'sufrir, pasar por', lv:'B2', exEN:'The patient underwent surgery yesterday.', exES:'El paciente fue operado ayer.' },
+      { v:'wear',           past:'WORE',            pp:'WORN',          es:'usar, llevar puesto',lv:'A2', exEN:'She wore a red dress to the party.',   exES:'Ella usó un vestido rojo en la fiesta.' },
+      { v:'win',            past:'WON',                                es:'ganar',              lv:'A2', exEN:'Our team won the championship.',         exES:'Nuestro equipo ganó el campeonato.' },
+      { v:'withdraw',       past:'WITHDREW',        pp:'WITHDRAWN',     es:'retirar, retirarse',lv:'B2', exEN:'He withdrew money from the ATM.',        exES:'Él retiró dinero del cajero automático.' },
+      // Phrasal Verbs (meaning only — verbMode: null)
+      { v:'break in on',    past:null, es:'interrumpir (conversación)', lv:'B2', exEN:'I was talking when the operator broke in on our call.',  exES:'Estaba hablando cuando el operador interrumpió nuestra llamada.', phrasal:true },
+      { v:'catch up with',  past:null, es:'alcanzar, ponerse al día',   lv:'B1', exEN:'I need to catch up with the news.',                      exES:'Necesito ponerme al día con las noticias.', phrasal:true },
+      { v:'check up on',    past:null, es:'examinar, investigar',        lv:'B2', exEN:'The doctor will check up on you tomorrow.',              exES:'El médico te examinará mañana.', phrasal:true },
+      { v:'come up with',   past:null, es:'proponer, idear',            lv:'B1', exEN:'She came up with a brilliant solution.',                 exES:'Ella propuso una solución brillante.', phrasal:true },
+      { v:'cut down on',    past:null, es:'reducir, disminuir',          lv:'B1', exEN:'I need to cut down on sugar.',                          exES:'Necesito reducir el azúcar.', phrasal:true },
+      { v:'drop out of',    past:null, es:'abandonar (escuela)',         lv:'B1', exEN:'He dropped out of university to start a business.',     exES:'Él abandonó la universidad para iniciar un negocio.', phrasal:true },
+      { v:'get along with', past:null, es:'llevarse bien con',           lv:'B1', exEN:'She gets along with everyone at work.',                 exES:'Ella se lleva bien con todos en el trabajo.', phrasal:true },
+      { v:'get rid of',     past:null, es:'deshacerse de',              lv:'B1', exEN:'I need to get rid of these old files.',                  exES:'Necesito deshacerme de estos archivos viejos.', phrasal:true },
+      { v:'get through with',past:null,es:'terminar, acabar',           lv:'B2', exEN:'When will you get through with that report?',           exES:'¿Cuándo terminarás ese informe?', phrasal:true },
+      { v:'keep up with',   past:null, es:'mantenerse al ritmo de',     lv:'B1', exEN:"It's hard to keep up with all the changes.",            exES:'Es difícil mantenerse al ritmo de todos los cambios.', phrasal:true },
+      { v:'look down on',   past:null, es:'menospreciar',               lv:'B2', exEN:'Never look down on people who know less than you.',     exES:'Nunca menosprecies a personas que saben menos que tú.', phrasal:true },
+      { v:'look out for',   past:null, es:'tener cuidado con',          lv:'B1', exEN:'Look out for ice on the road.',                         exES:'Ten cuidado con el hielo en la carretera.', phrasal:true },
+      { v:'look up to',     past:null, es:'admirar, respetar',          lv:'B1', exEN:'She looks up to her mentor a lot.',                     exES:'Ella admira mucho a su mentora.', phrasal:true },
+      { v:'put up with',    past:null, es:'tolerar, aguantar',          lv:'B1', exEN:"I can't put up with this noise.",                       exES:'No puedo tolerar este ruido.', phrasal:true },
+      { v:'run out of',     past:null, es:'quedarse sin',               lv:'B1', exEN:'We ran out of time before finishing.',                  exES:'Se nos acabó el tiempo antes de terminar.', phrasal:true },
+      { v:'take care of',   past:null, es:'cuidar, encargarse de',      lv:'A2', exEN:'She took care of the project details.',                 exES:'Ella se encargó de los detalles del proyecto.', phrasal:true },
+      { v:'pass out',       past:null, es:'desmayarse, perder el conocimiento', lv:'B1', exEN:'He passed out from the heat.',                 exES:'Él se desmayó por el calor.', phrasal:true },
+      { v:'show off',       past:null, es:'presumir, alardear',         lv:'B1', exEN:'He always shows off his new gadgets.',                  exES:'Él siempre alardea de sus nuevos aparatos.', phrasal:true },
+      { v:'drop by',        past:null, es:'pasar por, visitar sin cita',lv:'B1', exEN:'Feel free to drop by anytime.',                         exES:'Siéntete libre de pasar por aquí cuando quieras.', phrasal:true },
+      { v:'get by',         past:null, es:'sobrevivir, arreglárselas',  lv:'B1', exEN:'She got by with very little money.',                    exES:'Ella se arregló con muy poco dinero.', phrasal:true },
+      { v:'go on',          past:null, es:'continuar / suceder',        lv:'A2', exEN:"Go on, I'm listening.",                                 exES:'Continúa, te estoy escuchando.', phrasal:true },
+      { v:'grow up',        past:null, es:'crecer, hacerse adulto',     lv:'A2', exEN:'Where did you grow up?',                                exES:'¿Dónde creciste?', phrasal:true },
+      { v:'think back on',  past:null, es:'recordar, reflexionar sobre',lv:'B2', exEN:'I often think back on my childhood.',                   exES:'A menudo reflexiono sobre mi infancia.', phrasal:true },
+    ];
+
+    const VERBS_WORDS = [];
+    for (const v of _VB_RAW) {
+      const slug = v.v.replace(/\s+/g,'_').replace(/[^a-z_]/g,'');
+      if (v.phrasal) {
+        VERBS_WORDS.push({ id:`vb_${slug}_m`, english:v.v, spanish:v.es,
+          level:v.lv, category:'phrasal verb', verbMode:'meaning',
+          exampleEN:v.exEN, exampleES:v.exES || '' });
+      } else {
+        VERBS_WORDS.push({ id:`vb_${slug}_m`, english:v.v, spanish:v.es,
+          level:v.lv, category:'verb', verbMode:'meaning',
+          exampleEN:v.exEN, exampleES:v.exES || '' });
+        if (v.past) {
+          VERBS_WORDS.push({ id:`vb_${slug}_p`, english:`${v.v} → past`, spanish:v.past,
+            level:v.lv, category:'verb', verbMode:'past',
+            exampleEN:v.exEN, exampleES:v.exES || '' });
+        }
+        if (v.pp && v.pp !== v.past) {
+          VERBS_WORDS.push({ id:`vb_${slug}_pp`, english:`${v.v} → past participle`, spanish:v.pp,
+            level:v.lv, category:'verb', verbMode:'pastParticiple',
+            exampleEN:v.exEN, exampleES:v.exES || '' });
+        }
+      }
+    }
+
+    // === GRAMMAR_WORDS (Gramatica.json) ===
+    // Format: { tense, exs:[ {sj, en, es} ] }  — POSITIVE + QUESTION for I and HE only
+    const _GR_RAW = [
+      { tense:'Simple Future (will)', exs:[
+        { sj:'I',  en:'I WILL EAT',         es:'YO COMERÉ' },
+        { sj:'I',  en:'WILL I EAT?',        es:'¿COMERÉ?' },
+        { sj:'HE', en:'HE WILL EAT',        es:'ÉL COMERÁ' },
+        { sj:'HE', en:'WILL HE EAT?',       es:'¿COMERÁ ÉL?' },
+      ]},
+      { tense:'Simple Future (going to)', exs:[
+        { sj:'I',  en:'I AM GOING TO EAT',  es:'VOY A COMER' },
+        { sj:'I',  en:'AM I GOING TO EAT?', es:'¿VOY A COMER?' },
+        { sj:'HE', en:'HE IS GOING TO EAT', es:'ÉL VA A COMER' },
+        { sj:'HE', en:'IS HE GOING TO EAT?',es:'¿VA ÉL A COMER?' },
+      ]},
+      { tense:'Simple Present', exs:[
+        { sj:'I',  en:'I EAT',              es:'YO COMO' },
+        { sj:'I',  en:'DO I EAT?',          es:'¿COMO YO?' },
+        { sj:'HE', en:'HE EATS',            es:'ÉL COME' },
+        { sj:'HE', en:'DOES HE EAT?',       es:'¿COME ÉL?' },
+      ]},
+      { tense:'Present Progressive', exs:[
+        { sj:'I',  en:'I AM EATING',        es:'ESTOY COMIENDO' },
+        { sj:'I',  en:'AM I EATING?',       es:'¿ESTOY COMIENDO?' },
+        { sj:'HE', en:'HE IS EATING',       es:'ÉL ESTÁ COMIENDO' },
+        { sj:'HE', en:'IS HE EATING?',      es:'¿ESTÁ ÉL COMIENDO?' },
+      ]},
+      { tense:'Simple Past', exs:[
+        { sj:'I',  en:'I ATE',              es:'YO COMÍ' },
+        { sj:'I',  en:'DID I EAT?',         es:'¿COMÍ YO?' },
+        { sj:'HE', en:'HE ATE',             es:'ÉL COMIÓ' },
+        { sj:'HE', en:'DID HE EAT?',        es:'¿COMIÓ ÉL?' },
+      ]},
+      { tense:'Past Progressive', exs:[
+        { sj:'I',  en:'I WAS EATING',       es:'YO ESTABA COMIENDO' },
+        { sj:'I',  en:'WAS I EATING?',      es:'¿ESTABA YO COMIENDO?' },
+        { sj:'HE', en:'HE WAS EATING',      es:'ÉL ESTABA COMIENDO' },
+        { sj:'HE', en:'WAS HE EATING?',     es:'¿ESTABA ÉL COMIENDO?' },
+      ]},
+      { tense:'Present Perfect', exs:[
+        { sj:'I',  en:'I HAVE EATEN',       es:'YO HE COMIDO' },
+        { sj:'I',  en:'HAVE I EATEN?',      es:'¿HE COMIDO YO?' },
+        { sj:'HE', en:'HE HAS EATEN',       es:'ÉL HA COMIDO' },
+        { sj:'HE', en:'HAS HE EATEN?',      es:'¿HA COMIDO ÉL?' },
+      ]},
+      { tense:'Present Perfect Progressive', exs:[
+        { sj:'I',  en:'I HAVE BEEN EATING',    es:'YO HE ESTADO COMIENDO' },
+        { sj:'I',  en:'HAVE I BEEN EATING?',   es:'¿HE ESTADO COMIENDO?' },
+        { sj:'HE', en:'HE HAS BEEN EATING',    es:'ÉL HA ESTADO COMIENDO' },
+        { sj:'HE', en:'HAS HE BEEN EATING?',   es:'¿HA ESTADO COMIENDO?' },
+      ]},
+      { tense:'Past Perfect', exs:[
+        { sj:'I',  en:'I HAD EATEN',           es:'YO HABÍA COMIDO' },
+        { sj:'I',  en:'HAD I EATEN?',          es:'¿HABÍA COMIDO YO?' },
+        { sj:'HE', en:'HE HAD EATEN',          es:'ÉL HABÍA COMIDO' },
+        { sj:'HE', en:'HAD HE EATEN?',         es:'¿HABÍA COMIDO ÉL?' },
+      ]},
+      { tense:'Past Perfect Progressive', exs:[
+        { sj:'I',  en:'I HAD BEEN EATING',     es:'YO HABÍA ESTADO COMIENDO' },
+        { sj:'I',  en:'HAD I BEEN EATING?',    es:'¿HABÍA ESTADO COMIENDO?' },
+        { sj:'HE', en:'HE HAD BEEN EATING',    es:'ÉL HABÍA ESTADO COMIENDO' },
+        { sj:'HE', en:'HAD HE BEEN EATING?',   es:'¿HABÍA ESTADO COMIENDO?' },
+      ]},
+      { tense:'Zero Conditional', exs:[
+        { sj:'',   en:'IF I STUDY, I PASS THE LEVEL',         es:'SI ESTUDIO, PASO EL NIVEL' },
+        { sj:'',   en:'IF WATER BOILS, IT TURNS TO STEAM',    es:'SI EL AGUA HIERVE, SE CONVIERTE EN VAPOR' },
+      ]},
+      { tense:'First Conditional', exs:[
+        { sj:'',   en:'IF I STUDY, I WILL PASS THE LEVEL',    es:'SI ESTUDIO, PASARÉ EL NIVEL' },
+        { sj:'',   en:'IF IT RAINS, WE WILL STAY HOME',       es:'SI LLUEVE, NOS QUEDAREMOS EN CASA' },
+      ]},
+      { tense:'Second Conditional', exs:[
+        { sj:'',   en:'IF I STUDIED, I WOULD PASS THE LEVEL', es:'SI YO ESTUDIARA, PASARÍA EL NIVEL' },
+        { sj:'',   en:'IF I HAD MORE TIME, I WOULD TRAVEL',   es:'SI TUVIERA MÁS TIEMPO, VIAJARÍA' },
+      ]},
+      { tense:'Third Conditional', exs:[
+        { sj:'',   en:'IF I HAD STUDIED, I WOULD HAVE PASSED', es:'SI HUBIERA ESTUDIADO, HABRÍA APROBADO' },
+        { sj:'',   en:'IF SHE HAD TRIED, SHE WOULD HAVE WON',  es:'SI ELLA HUBIERA INTENTADO, HABRÍA GANADO' },
+      ]},
+    ];
+    const GRAMMAR_WORDS = [];
+    for (const t of _GR_RAW) {
+      const tSlug = t.tense.toLowerCase().replace(/\s+/g,'_').replace(/[^a-z_]/g,'');
+      t.exs.forEach((ex, i) => {
+        const sjSlug = (ex.sj||'x').toLowerCase();
+        GRAMMAR_WORDS.push({
+          id:`gr_${tSlug}_${sjSlug}_${i}`,
+          english: ex.en, spanish: ex.es,
+          level:'B1', category:'grammar',
+          grammarTopic: t.tense,
+          exampleEN: ex.en, exampleES: ex.es
+        });
+      });
+    }
+
     // normalize shorthand fields from extended blocks (en/es/pos → english/spanish/category)
     WORDS.forEach(w => {
       if (w.english === undefined) {
@@ -2768,6 +3265,9 @@
       reviewMode: false,
       kidsMode: false,
       itMode: false,
+      idiomMode: false,
+      verbsMode: false,
+      grammarMode: false,
       starredMode: false,
       showEmoji: true,
     };
@@ -2886,8 +3386,11 @@
     }
 
     function activeWordBank() {
-      if (state.kidsMode) return KIDS_WORDS;
-      if (state.itMode)   return IT_WORDS;
+      if (state.kidsMode)   return KIDS_WORDS;
+      if (state.itMode)     return IT_WORDS;
+      if (state.idiomMode)  return IDIOMS_WORDS;
+      if (state.verbsMode)  return VERBS_WORDS;
+      if (state.grammarMode)return GRAMMAR_WORDS;
       return WORDS;
     }
 
@@ -2899,7 +3402,7 @@
       }
       if (state.starredMode) {
         const ids  = starred.get();
-        const combined = [...WORDS, ...KIDS_WORDS, ...IT_WORDS];
+        const combined = [...WORDS, ...KIDS_WORDS, ...IT_WORDS, ...IDIOMS_WORDS, ...VERBS_WORDS, ...GRAMMAR_WORDS];
         const pool = combined.filter(w => ids.includes(w.id));
         return pool.length > 0 ? pool : combined;
       }
@@ -2908,16 +3411,21 @@
         const pool = bank.filter(w => ids.includes(w.id));
         return pool.length >= 4 ? pool : [...bank];
       }
-      if (state.kidsMode) return [...KIDS_WORDS];
-      if (state.itMode)   return [...IT_WORDS];
+      if (state.kidsMode)    return [...KIDS_WORDS];
+      if (state.itMode)      return [...IT_WORDS];
+      if (state.idiomMode)   return [...IDIOMS_WORDS];
+      if (state.verbsMode)   return [...VERBS_WORDS];
+      if (state.grammarMode) return [...GRAMMAR_WORDS];
       return level === 'mix' ? [...WORDS] : WORDS.filter(w => w.level === level);
     }
 
     function getDisstractors(correct) {
       // In starred mode words can come from any bank, so always use combined
       const bank = state.starredMode
-        ? [...WORDS, ...KIDS_WORDS, ...IT_WORDS]
+        ? [...WORDS, ...KIDS_WORDS, ...IT_WORDS, ...IDIOMS_WORDS, ...VERBS_WORDS, ...GRAMMAR_WORDS]
         : activeWordBank();
+      // In verbs mode, match distractors by verbMode to avoid mixing meanings with verb forms
+      const matchVerbMode = state.verbsMode && correct.verbMode;
       const used = new Set([correct.id]);
       const result = [];
       const fill = (candidates) => {
@@ -2926,9 +3434,13 @@
           if (!used.has(w.id)) { result.push(w); used.add(w.id); }
         }
       };
-      fill(bank.filter(w => w.level === correct.level && w.category === correct.category));
-      if (result.length < 3) fill(bank.filter(w => w.category === correct.category));
-      if (result.length < 3) fill(bank);
+      if (matchVerbMode) {
+        fill(bank.filter(w => w.verbMode === correct.verbMode));
+      } else {
+        fill(bank.filter(w => w.level === correct.level && w.category === correct.category));
+        if (result.length < 3) fill(bank.filter(w => w.category === correct.category));
+        if (result.length < 3) fill(bank);
+      }
       return result;
     }
 
@@ -2942,8 +3454,11 @@
 
     function renderQuestion() {
       const word       = round.words[round.index];
+      // grammar mode: always ES→EN (translate Spanish → pick English form)
       // kids mode: always EN→ES (simpler for kids)
-      round.isEnToEs   = state.kidsMode ? true : Math.random() < 0.5;
+      round.isEnToEs = state.grammarMode ? false
+                     : state.kidsMode    ? true
+                     : Math.random() < 0.5;
       round.answered   = false;
       round.correctWord = word;
       round.options    = shuffle([word, ...getDisstractors(word)]);
@@ -2954,6 +3469,23 @@
       document.getElementById('q-level').textContent = word.level;
       document.getElementById('q-cat').textContent   = word.category;
       document.getElementById('question-word').textContent = round.isEnToEs ? word.english : word.spanish;
+
+      // verb mode badge
+      const vmBadge = document.getElementById('verb-mode-badge');
+      if (state.verbsMode && word.verbMode === 'past') {
+        vmBadge.textContent = '¿Cuál es el pasado simple?';
+        vmBadge.className = 'verb-mode-badge'; vmBadge.style.display = 'block';
+      } else if (state.verbsMode && word.verbMode === 'pastParticiple') {
+        vmBadge.textContent = '¿Cuál es el participio pasado?';
+        vmBadge.className = 'verb-mode-badge pp'; vmBadge.style.display = 'block';
+      } else { vmBadge.style.display = 'none'; }
+
+      // grammar topic badge
+      const gtBadge = document.getElementById('grammar-topic-badge');
+      if (state.grammarMode && word.grammarTopic) {
+        gtBadge.textContent = word.grammarTopic;
+        gtBadge.style.display = 'block';
+      } else { gtBadge.style.display = 'none'; }
 
       // emoji hint (kids mode — respects toggle)
       const emojiEl = document.getElementById('question-emoji');
@@ -3170,7 +3702,7 @@
     function applyEmojiState() {
       const emojiEl = document.getElementById('question-emoji');
       const toggleBtn = document.getElementById('btn-emoji-toggle');
-      if (!state.kidsMode || state.itMode) {
+      if (!state.kidsMode || state.itMode || state.idiomMode || state.verbsMode || state.grammarMode) {
         toggleBtn.style.display = 'none';
         return;
       }
@@ -3194,16 +3726,47 @@
       applyEmojiState();
     }
     function enterItMode() {
-      state.itMode      = true;
-      state.kidsMode    = false;
-      state.starredMode = false;
-      state.reviewMode  = false;
+      state.itMode = true; state.kidsMode = false; state.starredMode = false;
+      state.reviewMode = false; state.idiomMode = false; state.verbsMode = false; state.grammarMode = false;
       document.documentElement.classList.add('it-mode');
       applyEmojiState();
     }
     function exitItMode() {
       state.itMode = false;
       document.documentElement.classList.remove('it-mode');
+    }
+    function enterIdiomMode() {
+      state.idiomMode = true; state.kidsMode = false; state.itMode = false;
+      state.starredMode = false; state.reviewMode = false; state.verbsMode = false; state.grammarMode = false;
+      document.documentElement.classList.add('idiom-mode');
+      applyEmojiState();
+    }
+    function exitIdiomMode() {
+      state.idiomMode = false;
+      document.documentElement.classList.remove('idiom-mode');
+    }
+    function enterVerbsMode() {
+      state.verbsMode = true; state.kidsMode = false; state.itMode = false;
+      state.starredMode = false; state.reviewMode = false; state.idiomMode = false; state.grammarMode = false;
+      document.documentElement.classList.add('verbs-mode');
+      applyEmojiState();
+    }
+    function exitVerbsMode() {
+      state.verbsMode = false;
+      document.documentElement.classList.remove('verbs-mode');
+    }
+    function enterGrammarMode() {
+      state.grammarMode = true; state.kidsMode = false; state.itMode = false;
+      state.starredMode = false; state.reviewMode = false; state.idiomMode = false; state.verbsMode = false;
+      document.documentElement.classList.add('grammar-mode');
+      applyEmojiState();
+    }
+    function exitGrammarMode() {
+      state.grammarMode = false;
+      document.documentElement.classList.remove('grammar-mode');
+    }
+    function exitAllSpecialModes() {
+      exitDinoMode(); exitItMode(); exitIdiomMode(); exitVerbsMode(); exitGrammarMode();
     }
 
     function renderHomeStats() {
@@ -3237,10 +3800,10 @@
     });
 
     document.getElementById('btn-start').addEventListener('click', () => {
-      exitDinoMode(); exitItMode(); state.reviewMode = false; state.starredMode = false; startRound();
+      exitAllSpecialModes(); state.reviewMode = false; state.starredMode = false; startRound();
     });
     document.getElementById('btn-review-errors').addEventListener('click', () => {
-      exitDinoMode(); exitItMode(); state.reviewMode = true; state.starredMode = false; startRound();
+      exitAllSpecialModes(); state.reviewMode = true; state.starredMode = false; startRound();
     });
 
     // Dino mode
@@ -3253,16 +3816,40 @@
 
     // IT / Tech mode
     document.getElementById('btn-it').addEventListener('click', () => {
-      exitDinoMode(); enterItMode(); startRound();
+      exitAllSpecialModes(); enterItMode(); startRound();
     });
     document.getElementById('btn-it').addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); exitDinoMode(); enterItMode(); startRound(); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); exitAllSpecialModes(); enterItMode(); startRound(); }
+    });
+
+    // Idioms mode
+    document.getElementById('btn-idioms').addEventListener('click', () => {
+      exitAllSpecialModes(); enterIdiomMode(); startRound();
+    });
+    document.getElementById('btn-idioms').addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); exitAllSpecialModes(); enterIdiomMode(); startRound(); }
+    });
+
+    // Verbs mode
+    document.getElementById('btn-verbs').addEventListener('click', () => {
+      exitAllSpecialModes(); enterVerbsMode(); startRound();
+    });
+    document.getElementById('btn-verbs').addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); exitAllSpecialModes(); enterVerbsMode(); startRound(); }
+    });
+
+    // Grammar mode
+    document.getElementById('btn-grammar').addEventListener('click', () => {
+      exitAllSpecialModes(); enterGrammarMode(); startRound();
+    });
+    document.getElementById('btn-grammar').addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); exitAllSpecialModes(); enterGrammarMode(); startRound(); }
     });
 
     // Starred / Mis Palabras
     document.getElementById('btn-starred').addEventListener('click', () => {
       if (starred.count() === 0) return;
-      exitDinoMode(); exitItMode(); state.reviewMode = false; state.starredMode = true; startRound();
+      exitAllSpecialModes(); state.reviewMode = false; state.starredMode = true; startRound();
     });
     document.getElementById('btn-starred').addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); document.getElementById('btn-starred').click(); }
@@ -3371,12 +3958,15 @@
     renderHomeStats();
     showScreen('home');
 
-    console.info(`WordMaster v4 — ${WORDS.length} palabras + ${KIDS_WORDS.length} Kids + ${IT_WORDS.length} IT`,
+    console.info(`WordMaster v5 — ${WORDS.length} palabras + ${KIDS_WORDS.length} Kids + ${IT_WORDS.length} IT + ${IDIOMS_WORDS.length} Idioms + ${VERBS_WORDS.length} Verbs + ${GRAMMAR_WORDS.length} Grammar`,
       { A2: WORDS.filter(w => w.level === 'A2').length,
         B1: WORDS.filter(w => w.level === 'B1').length,
         B2: WORDS.filter(w => w.level === 'B2').length,
         K:  KIDS_WORDS.length,
-        IT: IT_WORDS.length });
+        IT: IT_WORDS.length,
+        Idioms:  IDIOMS_WORDS.length,
+        Verbs:   VERBS_WORDS.length,
+        Grammar: GRAMMAR_WORDS.length });
   </script>
 </body>
 </html>
