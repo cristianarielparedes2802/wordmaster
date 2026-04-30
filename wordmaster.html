@@ -273,11 +273,16 @@
       gap: .625rem;
       transition: all var(--ease);
       min-height: 56px;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      outline: none;
     }
-    .option-btn:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
-    .option-btn:disabled { cursor: default; outline: none !important; box-shadow: none !important; }
-    .option-btn:disabled:focus, .option-btn:disabled:focus-visible { outline: none !important; }
-    .option-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    /* hover + focus-visible ONLY on real pointer devices — never on touch */
+    @media (hover: hover) and (pointer: fine) {
+      .option-btn:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
+      .option-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    }
+    .option-btn:focus { outline: none; }
+    .option-btn:disabled { cursor: default; }
 
     .option-row.correct .option-btn { background: var(--success-light); border-color: var(--success); color: var(--success); }
     .option-row.wrong   .option-btn { background: var(--error-light);   border-color: var(--error);   color: var(--error); }
@@ -3525,6 +3530,7 @@
 
         const btn = document.createElement('button');
         btn.className = 'option-btn'; btn.dataset.id = opt.id;
+        btn.tabIndex = -1;
 
         const num = document.createElement('span');
         num.className = 'option-num'; num.setAttribute('aria-hidden', 'true'); num.textContent = i + 1;
@@ -3557,12 +3563,8 @@
       document.getElementById('btn-next').textContent =
         round.index < round.words.length - 1 ? 'Siguiente →' : 'Ver resultados →';
 
-      // Focus first option for keyboard navigation — desktop only (touch devices keep no focus ring)
-      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        requestAnimationFrame(() => {
-          document.querySelector('#options-grid .option-btn')?.focus();
-        });
-      }
+      // Option buttons have tabIndex=-1 and are navigated via 1-4 keys (keydown on document)
+      // No programmatic focus needed here — it caused the highlight bug on touch devices
     }
 
     function updateHud() {
