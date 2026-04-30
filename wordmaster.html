@@ -275,7 +275,8 @@
       min-height: 56px;
     }
     .option-btn:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
-    .option-btn:disabled { cursor: default; }
+    .option-btn:disabled { cursor: default; outline: none !important; box-shadow: none !important; }
+    .option-btn:disabled:focus, .option-btn:disabled:focus-visible { outline: none !important; }
     .option-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
     .option-row.correct .option-btn { background: var(--success-light); border-color: var(--success); color: var(--success); }
@@ -373,6 +374,8 @@
 
     .feedback-example    { font-size: .8rem; color: var(--text);       line-height: 1.65; border-left: 3px solid var(--accent-light); padding-left: .75rem; }
     .feedback-example-es { font-size: .8rem; color: var(--text-muted); line-height: 1.65; border-left: 3px solid var(--border);       padding-left: .75rem; margin-top: .25rem; }
+    .feedback-verb-meaning { display:none; font-size: .8rem; color: var(--accent); font-weight: 600;
+      background: var(--accent-light); border-radius: 6px; padding: .25rem .6rem; margin-bottom: .4rem; }
 
     .feedback-saved {
       display: inline-block;
@@ -941,6 +944,7 @@
     <div class="feedback-box" id="feedback-box" aria-live="polite">
       <p class="feedback-result" id="feedback-result"></p>
       <p class="feedback-pair"   id="feedback-pair"></p>
+      <p class="feedback-verb-meaning" id="feedback-verb-meaning"></p>
       <p class="feedback-example"    id="feedback-example-en"></p>
       <p class="feedback-example-es" id="feedback-example-es"></p>
       <span id="feedback-tag"></span>
@@ -3143,12 +3147,12 @@
           exampleEN:v.exEN, exampleES:v.exES || '' });
         if (v.past) {
           VERBS_WORDS.push({ id:`vb_${slug}_p`, english:`${v.v} → past`, spanish:v.past,
-            level:v.lv, category:'verb', verbMode:'past',
+            spanishMeaning:v.es, level:v.lv, category:'verb', verbMode:'past',
             exampleEN:v.exEN, exampleES:v.exES || '' });
         }
         if (v.pp && v.pp !== v.past) {
           VERBS_WORDS.push({ id:`vb_${slug}_pp`, english:`${v.v} → past participle`, spanish:v.pp,
-            level:v.lv, category:'verb', verbMode:'pastParticiple',
+            spanishMeaning:v.es, level:v.lv, category:'verb', verbMode:'pastParticiple',
             exampleEN:v.exEN, exampleES:v.exES || '' });
         }
       }
@@ -3533,12 +3537,15 @@
         btn.addEventListener('click', () => handleAnswer(opt.id, row));
         row.appendChild(btn);
 
-        if (!round.isEnToEs) {
+        // Show speak button: when options are in English (ES→EN) OR verb conjugation (options are English verb forms)
+        const optIsEnglish = !round.isEnToEs || isVerbConj;
+        const textToSpeak  = isVerbConj ? opt.spanish : opt.english;
+        if (optIsEnglish) {
           const spk = document.createElement('button');
           spk.className = 'option-speak';
-          spk.setAttribute('aria-label', `Pronunciar "${opt.english}"`);
+          spk.setAttribute('aria-label', `Pronunciar "${textToSpeak}"`);
           spk.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>';
-          spk.addEventListener('click', e => { e.stopPropagation(); tts.speak(opt.english); });
+          spk.addEventListener('click', e => { e.stopPropagation(); tts.speak(textToSpeak); });
           row.appendChild(spk);
         }
         grid.appendChild(row);
@@ -3572,6 +3579,8 @@
     function handleAnswer(selectedId, clickedRow) {
       if (round.answered) return;
       round.answered = true;
+      // Remove focus from the tapped/clicked button immediately so no ring persists
+      document.activeElement?.blur();
       const isCorrect = selectedId === round.correctWord.id;
 
       document.querySelectorAll('#options-grid .option-row').forEach(row => {
@@ -3600,8 +3609,10 @@
         ? `Correcto. ${w.english}: ${w.spanish}.`
         : `Incorrecto. La respuesta correcta es ${w.english}: ${w.spanish}.`;
 
-      // Focus next button so Enter key works immediately
-      requestAnimationFrame(() => document.getElementById('btn-next').focus());
+      // Focus next button for keyboard navigation — desktop only
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        requestAnimationFrame(() => document.getElementById('btn-next').focus());
+      }
     }
 
     function renderFeedback(word, isCorrect) {
@@ -3615,6 +3626,15 @@
       strong.textContent = word.english;
       pairEl.appendChild(strong);
       pairEl.appendChild(document.createTextNode(` — ${word.spanish}`));
+
+      // Verb conjugation: show the base Spanish meaning below the pair
+      const vmEl = document.getElementById('feedback-verb-meaning');
+      if (word.spanishMeaning) {
+        vmEl.textContent = `Significado: ${word.spanishMeaning}`;
+        vmEl.style.display = 'block';
+      } else {
+        vmEl.style.display = 'none';
+      }
 
       document.getElementById('feedback-example-en').textContent = word.exampleEN;
       document.getElementById('feedback-example-es').textContent = word.exampleES;
