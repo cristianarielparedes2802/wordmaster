@@ -3455,8 +3455,11 @@
     function renderQuestion() {
       const word       = round.words[round.index];
       // grammar mode: always ES→EN (translate Spanish → pick English form)
+      // verb conjugation (past/pp): always EN→ES (see "verb → past" → pick the form)
       // kids mode: always EN→ES (simpler for kids)
+      const isVerbConj = state.verbsMode && word.verbMode && word.verbMode !== 'meaning';
       round.isEnToEs = state.grammarMode ? false
+                     : isVerbConj        ? true
                      : state.kidsMode    ? true
                      : Math.random() < 0.5;
       round.answered   = false;
@@ -3465,7 +3468,11 @@
 
       updateHud();
 
-      document.getElementById('question-direction').textContent = round.isEnToEs ? 'Inglés → Español' : 'Español → Inglés';
+      const dirLabel = state.grammarMode   ? 'Español → Inglés (Gramática)'
+                     : isVerbConj         ? 'Verbo → Forma conjugada'
+                     : round.isEnToEs     ? 'Inglés → Español'
+                     :                      'Español → Inglés';
+      document.getElementById('question-direction').textContent = dirLabel;
       document.getElementById('q-level').textContent = word.level;
       document.getElementById('q-cat').textContent   = word.category;
       document.getElementById('question-word').textContent = round.isEnToEs ? word.english : word.spanish;
@@ -3543,10 +3550,12 @@
       document.getElementById('btn-next').textContent =
         round.index < round.words.length - 1 ? 'Siguiente →' : 'Ver resultados →';
 
-      // Focus first option for keyboard navigation
-      requestAnimationFrame(() => {
-        document.querySelector('#options-grid .option-btn')?.focus();
-      });
+      // Focus first option for keyboard navigation — desktop only (touch devices keep no focus ring)
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        requestAnimationFrame(() => {
+          document.querySelector('#options-grid .option-btn')?.focus();
+        });
+      }
     }
 
     function updateHud() {
