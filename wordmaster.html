@@ -670,6 +670,20 @@
     .star-btn:active { transform: scale(.9); }
     .star-btn.active { opacity: 1; }
 
+    /* feedback header: result + star side by side */
+    .feedback-header { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: .3rem; }
+
+    /* star inside feedback: pill shape, always fully visible */
+    #star-word-feedback {
+      width: auto; height: 36px; border-radius: 99px;
+      border: 2px solid var(--border); background: var(--bg);
+      opacity: 1; font-size: .9rem; padding: 0 .75rem;
+      color: var(--text-muted); white-space: nowrap;
+    }
+    #star-word-feedback.active {
+      border-color: #f59e0b; background: rgba(245,158,11,.12); color: #d97706;
+    }
+
     /* emoji hint shown in kids mode */
     .question-emoji {
       font-size: 3rem;
@@ -947,7 +961,10 @@
     <div id="feedback-backdrop" aria-hidden="true"></div>
 
     <div class="feedback-box" id="feedback-box" aria-live="polite">
-      <p class="feedback-result" id="feedback-result"></p>
+      <div class="feedback-header">
+        <p class="feedback-result" id="feedback-result"></p>
+        <button class="star-btn" id="star-word-feedback" aria-label="Guardar para practicar">☆ Guardar</button>
+      </div>
       <p class="feedback-pair"   id="feedback-pair"></p>
       <p class="feedback-verb-meaning" id="feedback-verb-meaning"></p>
       <p class="feedback-example"    id="feedback-example-en"></p>
@@ -3617,10 +3634,21 @@
       }
     }
 
+    function updateFeedbackStar(wordId) {
+      const btn = document.getElementById('star-word-feedback');
+      if (!btn) return;
+      const isStarred = starred.has(wordId);
+      btn.textContent = isStarred ? '★ Guardada' : '☆ Guardar';
+      btn.classList.toggle('active', isStarred);
+      btn.setAttribute('aria-label', isStarred ? 'Quitar de favoritas' : 'Guardar para practicar');
+    }
+
     function renderFeedback(word, isCorrect) {
       const resultEl = document.getElementById('feedback-result');
       resultEl.className   = `feedback-result ${isCorrect ? 'ok' : 'err'}`;
       resultEl.textContent = isCorrect ? '✓ Correcto' : '✗ Incorrecto';
+
+      updateFeedbackStar(word.id);
 
       const pairEl = document.getElementById('feedback-pair');
       pairEl.textContent = '';
@@ -3886,16 +3914,22 @@
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); document.getElementById('btn-starred').click(); }
     });
 
-    // Star toggle during quiz
-    document.getElementById('star-word').addEventListener('click', () => {
+    // Star toggle — shared logic for both star buttons (question card + feedback)
+    function handleStarToggle() {
       if (!round?.correctWord) return;
       const added = starred.toggle(round.correctWord.id);
-      const btn   = document.getElementById('star-word');
-      btn.textContent = added ? '★' : '☆';
-      btn.classList.toggle('active', added);
-      btn.setAttribute('aria-label', added ? 'Quitar de favoritas' : 'Guardar para practicar');
+      // Update question card star
+      const cardBtn = document.getElementById('star-word');
+      cardBtn.textContent = added ? '★' : '☆';
+      cardBtn.classList.toggle('active', added);
+      cardBtn.setAttribute('aria-label', added ? 'Quitar de favoritas' : 'Guardar para practicar');
+      // Update feedback star
+      updateFeedbackStar(round.correctWord.id);
       renderHomeStats();
-    });
+    }
+
+    document.getElementById('star-word').addEventListener('click', handleStarToggle);
+    document.getElementById('star-word-feedback').addEventListener('click', handleStarToggle);
 
     document.getElementById('btn-next').addEventListener('click', handleNext);
 
@@ -3967,7 +4001,7 @@
       }
 
       if (e.key === 's' || e.key === 'S') {
-        document.getElementById('star-word').click();
+        handleStarToggle();
         return;
       }
 
